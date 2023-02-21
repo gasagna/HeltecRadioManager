@@ -1,0 +1,6 @@
+- start receiving packets in a buffer and then use a blocking
+  function like available() to test if a new packet has arrived 
+  while we were doing other stuff. The alternative is to drop packets, 
+  as we are currently doing.
+
+- add mesh functionality
