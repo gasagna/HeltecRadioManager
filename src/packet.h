@@ -15,17 +15,17 @@ typedef enum {
 /// @brief A bit field struct to store packet information compactly in 
 // as little space as possible, i.e. two bytes. The size in bits of each
 // field also determines the range of values that the fields can have.
-struct HeaderFields {
+struct Header {
    uint8_t dest_address : 5; ///< the destination address, from 0 (usually for the gateway) to 31
    uint8_t    packet_id : 3; ///< the packet id, from 0 to 7
    uint8_t  src_address : 5; ///< the address of the source device, from 0 to 31
    Message_t   msg_type : 3; ///< the type of the message, see ::Message_t
 } __attribute__((packed)); // this is necessary to force this structure to be 2 bytes
 
-union Header {
-    uint16_t header;
-    struct HeaderFields fields;
-};
+// union Header {
+    // uint16_t header;
+    // struct HeaderFields fields;
+// };
 
 /// @brief Data structure for packets sent with HeltecRadioManager. This is part of the
 /// private interface and this type is not exposed to user code.

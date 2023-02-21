@@ -15,12 +15,12 @@ Packet_t make_packet(uint8_t dest_address,
                     uint8_t* data,
                      uint8_t length) {
     Packet_t packet;
-    packet.header.fields.dest_address = dest_address;
-    packet.header.fields.src_address  = src_address;
-    packet.header.fields.msg_type     = msg_type;
-    packet.header.fields.packet_id    = packet_id;
-    packet.length                     = length;
-    packet.nbytes                     = length + 3;
+    packet.header.dest_address = dest_address;
+    packet.header.src_address  = src_address;
+    packet.header.msg_type     = msg_type;
+    packet.header.packet_id    = packet_id;
+    packet.length              = length;
+    packet.nbytes              = length + 3;
     memcpy(&packet.payload, data, length);
     return packet;
 }
@@ -32,7 +32,7 @@ Packet_t make_packet(uint8_t dest_address,
 /// @return the destination address
 uint8_t get_dest_address(uint8_t* data) {
     Header header; memcpy(&header, data, sizeof(Header));
-    return header.fields.dest_address;
+    return header.dest_address;
 }
 
 /// @brief Get source address from raw LoRa data. Addresses are stored
@@ -42,7 +42,7 @@ uint8_t get_dest_address(uint8_t* data) {
 /// @return the source address
 uint8_t get_src_address(uint8_t* data) {
     Header header; memcpy(&header, data, sizeof(Header));
-    return header.fields.src_address;
+    return header.src_address;
 }
 
 /// @brief Get message type from raw LoRa data. See ::Message_t for details.
@@ -50,7 +50,7 @@ uint8_t get_src_address(uint8_t* data) {
 /// @return the message type
 Message_t get_msg_type(uint8_t* data) {
     Header header; memcpy(&header, data, sizeof(Header));
-    return header.fields.msg_type;
+    return header.msg_type;
 }
 
 /// @brief Get packet id. The id ranges from 0 to 7.
@@ -58,5 +58,5 @@ Message_t get_msg_type(uint8_t* data) {
 /// @return the packet id.
 uint8_t get_packet_id(uint8_t* data) {
     Header header; memcpy(&header, data, sizeof(Header));
-    return header.fields.packet_id;
+    return header.packet_id;
 }

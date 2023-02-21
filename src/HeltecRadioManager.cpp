@@ -155,10 +155,10 @@ void RadioManagerClass::recv(uint8_t* data, uint8_t* length, uint8_t* from, int1
                                    highByte(_packet.snr),  lowByte(_packet.snr)};
 
                 // make acknowledgment packet and send it
-                Packet_t ack = make_packet(_packet.header.fields.src_address,
+                Packet_t ack = make_packet(_packet.header.src_address,
                                            _address,
                                            ACKNOWLEDGEMENT,
-                                           _packet.header.fields.packet_id,
+                                           _packet.header.packet_id,
                                            &buff[0],
                                            4);
 
@@ -182,7 +182,7 @@ void RadioManagerClass::recv(uint8_t* data, uint8_t* length, uint8_t* from, int1
                 // copy content to output
                 memcpy(data, _packet.payload, _packet.length);
                 *length = _packet.length;
-                *from   = _packet.header.fields.src_address;
+                *from   = _packet.header.src_address;
                 *rssi   = _packet.rssi;
                 *snr    = _packet.snr;
 
