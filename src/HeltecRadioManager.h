@@ -26,7 +26,7 @@ typedef enum {
                                   "LOWPOWER",
                                   "HAS_RECV",
                                   "HAS_SENT",
-                                  "HAS_TIMEOUT",
+                                  "HAS_TIMEDOUT",
                                   "HAS_SENT_ACK",
                                   "HAS_RECV_ACK"};
 #endif
