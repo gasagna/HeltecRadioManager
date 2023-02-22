@@ -314,16 +314,16 @@ bool RadioManagerClass::send(uint8_t* data,
                 _last_packet_id = (_last_packet_id + 1) % 8;
 
                 // exit point when no acknowledgement is required
-                if (state == HAS_SENT || state == HAS_TIMEDOUT) {
-                    *msg_rssi = 0;
-                    *msg_snr  = 0;
-                    *ack_rssi = 0;
-                    *ack_snr  = 0;
+                if (state == RadioManagerState::HAS_SENT || state == RadioManagerState::HAS_TIMEDOUT) {
+                    if (msg_rssi != NULL) {*msg_rssi = 0;}
+                    if (msg_snr  != NULL) {*msg_snr  = 0;}
+                    if (ack_rssi != NULL) {*ack_rssi = 0;}
+                    if (ack_snr  != NULL) {*ack_snr  = 0;}
                     return false;
                 }
                 
                 // exit point when an acknowledgement is required
-                if (state == HAS_RECV_ACK) {
+                if (state == RadioManagerState::HAS_RECV_ACK) {
                     // store ack packet rssi and snr for output
                     if (msg_rssi != NULL) {*msg_rssi = bytes_to_int16_t(_packet.payload[0], _packet.payload[1]);}
                     if (msg_snr  != NULL) {*msg_snr  = bytes_to_int16_t(_packet.payload[2], _packet.payload[3]);}
