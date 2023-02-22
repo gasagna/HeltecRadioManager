@@ -111,14 +111,6 @@ void RadioManagerClass::_reset_events() {
 /// @param snr the transmission SNR
 void RadioManagerClass::storePacket(uint8_t *payload, uint16_t length, int16_t rssi, int8_t snr) {
     memcpy((uint8_t*)(&_packet), payload, length);
-    uint8_t var;
-    for (int i = 0; i < 11; i++) {
-        var = *(payload + i);
-        Serial.print(var);
-    }
-    Serial.println();
-    Serial.println();
-    Serial.println();
     _packet.rssi = rssi;
     _packet.snr  = snr;
 }
