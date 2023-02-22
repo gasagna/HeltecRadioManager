@@ -325,10 +325,10 @@ bool RadioManagerClass::send(uint8_t* data,
                 // exit point when an acknowledgement is required
                 if (state == HAS_RECV_ACK) {
                     // store ack packet rssi and snr for output
-                    *msg_rssi = bytes_to_int16_t(_packet.payload[0], _packet.payload[1]);
-                    *msg_snr  = bytes_to_int16_t(_packet.payload[2], _packet.payload[3]);
-                    *ack_rssi = _packet.rssi;
-                    *ack_snr  = _packet.snr;
+                    if (msg_rssi != NULL) {*msg_rssi = bytes_to_int16_t(_packet.payload[0], _packet.payload[1]);}
+                    if (msg_snr  != NULL) {*msg_snr  = bytes_to_int16_t(_packet.payload[2], _packet.payload[3]);}
+                    if (ack_rssi != NULL) {*ack_rssi = _packet.rssi;}
+                    if (ack_snr  != NULL) {*ack_snr  = _packet.snr;}
                     return true;
                 }
             }
