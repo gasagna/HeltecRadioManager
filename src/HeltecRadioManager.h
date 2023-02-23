@@ -1,7 +1,17 @@
 #ifndef _HELTECRADIOMANAGER_H
 #define _HELTECRADIOMANAGER_H
 
-#include "LoRaWan_APP.h"
+#if defined(Wireless_Stick_V3)
+    #include "ESP32_LoRaWan_102.h"
+    #include "ESP32_Mcu.h"
+#elif defined(CubeCell_Board) || defined(CubeCell_Board_V2) || \
+      defined(CubeCell_Capsule) || defined(CubeCell_Module) || \
+      defined(CubeCell_Module_V2)  || defined(CubeCell_BoardPlus) || \
+      defined(CubeCell_GPS) || defined(CubeCell_ModulePlus) || \
+      defined(CubeCell_BoardPRO)
+    #include "LoRaWan_102.h"
+#endif
+
 #include "packet.h"
 
 
